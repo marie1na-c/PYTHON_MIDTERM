@@ -1,0 +1,79 @@
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Task Form</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #657864;
+                color: #344C3D; 
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+                flex-direction: column;
+            }
+            h1 {
+                color: #0f2609;
+                text-align: center;
+            }
+            a {
+                color: #172416;
+                text-decoration: none;
+                display: block;
+                text-align: center;
+                margin-top: 15px;
+            }
+            a:hover {
+                text-decoration: underline;
+            }
+            form {
+                width: 100%;
+                max-width: 400px;
+                padding: 20px;
+                background: #BFcfbb;
+                border-radius: 12px;
+                box-shadow: 0px 4px 6px rgba(0, 32, 15, 0.1);
+                text-align: center;
+            }
+            input, textarea {
+                width: 100%;
+                padding: 10px;
+                margin-top: 5px;
+                border: 1px solid #738A6E;
+                border-radius: 10px; /* Smaller radius for a cuter look */
+                background-color: #eef5ee;
+            }
+            textarea {
+                resize: none;
+                height: 80px;
+            }
+            button {
+                display: block;
+                width: 100%;
+                padding: 10px;
+                margin-top: 10px;
+                border: none;
+                border-radius: 10px;
+                background-color: #344C3D;
+                color: white;
+                cursor: pointer;
+                font-size: 16px;
+            }
+            button:hover {
+                background-color: #2a3a2b;
+            }
+        </style>    
+
+    </head>
+    <body>
+        <h1>{% if form.instance.pk %}Edit{% else %}Create{% endif %} Task</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Save</button>
+        </form>
+        <a href="{% url 'task_list' %}">Back to List</a>
+    </body>
+    </html>
